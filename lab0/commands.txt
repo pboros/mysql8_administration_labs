@@ -13,7 +13,7 @@
 # I recommend to have the environment and follow along the labs.
 
 # To install vagrant via homebrew
-brew cask install vagrantup
+brew cask install vagrant
 
 # To install virtualbox via homebrew
 brew cask install virtualbox
