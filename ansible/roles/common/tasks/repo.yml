@@ -1,0 +1,10 @@
+---
+- name: MySQL yum repository
+  yum:
+    name: "{{ mysql_repo_url }}"
+    state: present
+
+- name: Percona yum repository
+  yum:
+    name: "{{ percona_repo_url }}"
+    state: present

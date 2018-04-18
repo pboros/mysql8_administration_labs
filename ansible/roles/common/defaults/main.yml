@@ -1,0 +1,10 @@
+---
+percona_yum_release_version: '0.1-3'
+percona_base_url: "http://www.percona.com/downloads/percona-release/redhat"
+percona_rpm_name: "{{ percona_yum_release_version }}/percona-release-{{ percona_yum_release_version }}.noarch.rpm"
+percona_repo_url: "{{ percona_base_url }}/{{ percona_rpm_name }}"
+
+mysql_base_url: "https://dev.mysql.com/get"
+mysql_rpm_name: "mysql57-community-release-el7-11.noarch.rpm"
+mysql_repo_url: "{{ mysql_base_url }}/{{ mysql_rpm_name }}"
+

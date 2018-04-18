@@ -1,0 +1,11 @@
+# Idea
+.idea
+
+# Vagrant 
+.vagrant
+
+# Ansible retry
+*.retry
+
+# pyc
+*.pyc
