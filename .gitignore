@@ -9,3 +9,9 @@
 
 # pyc
 *.pyc
+
+# packer build results
+boxbuild/build*
+
+# packer cache
+boxbuild/*/packer_cache
