@@ -43,7 +43,9 @@ sudo yum -y install pmm-client
 sudo pmm-admin config --server lab5b-mon
 
 # Add mysql monitor
-sudo pmm-admin add mysql --query-source perfschema
+sudo pmm-admin add mysql \
+--query-source perfschema \
+--socket=/var/lib/mysql/mysql.sock
 
 # Verify that it was added
 sudo pmm-admin list

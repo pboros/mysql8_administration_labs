@@ -23,6 +23,9 @@ create database sakila;
 create user 'sakila'@'localhost' identified by 'sakilapass';
 grant all on sakila.* to 'sakila'@'localhost';
 
+# Exit from mysql client
+exit
+
 # Use the pt-show-grants utility to dump all the available users in sql
 pt-show-grants
 

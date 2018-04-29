@@ -37,7 +37,7 @@ select * from t;
 exit
 
 # Check the binary log, what is logged in row mode? What is in statement mode?
-sudo mysqlbinlog -v /var/lib/mysql/mysql-bin.000002 --start-position=4197
+sudo mysqlbinlog -v /var/lib/mysql/mysql-bin.000002 --start-position=4927
 
 # Exit from the ssh session with CTRL+d or exit command on lab4a
 exit

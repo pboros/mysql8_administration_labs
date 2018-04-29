@@ -44,7 +44,7 @@ mysql
 # Configure replication
 change master to master_host='lab4b-db1', master_user='repl',
 master_password='repl', master_port=3306,
-master_log_file='mysql-bin.000002', master_log_pos=4197;
+master_log_file='mysql-bin.000002', master_log_pos=4927;
 
 # Start the slave
 start slave;
@@ -67,7 +67,7 @@ create table t(id int primary key auto_increment, ts timestamp);
 # Change the schema to sbtest in lab4b-db2 mysql client
 use sbtest;
 
-# Check the tables, the t table will be there
+# Check the tables, the t table will be there on lab4b-db2
 show tables;
 
 # Check master status on lab4b-db1, notice the position advancing
