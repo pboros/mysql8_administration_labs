@@ -46,10 +46,13 @@ sysbench \
 # While the traffic is on, execute pt-table-checksum on the master (lab7c-db1)
 pt-table-checksum --no-check-binlog-format --chunk-time 0.1
 
-# Examine the percona.checksums table
+# Start mysql client on the slave (lab7c-db2)
+mysql
+
+# Examine the percona.checksums table on the slave (lab7c-db2)
 select * from percona.checksums limit 5;
 
-# On each slave, sun the following query to determine if they have any differences
+# On the slave (lab7c-db2) check for differences
 SELECT db, tbl, SUM(this_cnt) AS total_rows, COUNT(*) AS chunks
 FROM percona.checksums
 WHERE (
@@ -71,7 +74,7 @@ exit
 # Re-run pt-table-checksum on the master
 pt-table-checksum --no-check-binlog-format --chunk-time 0.1
 
-# Check for differences on the slaves
+# Check for differences on the slave (lab7b-db2)
 SELECT db, tbl, SUM(this_cnt) AS total_rows, COUNT(*) AS chunks
 FROM percona.checksums
 WHERE (
@@ -80,19 +83,20 @@ WHERE (
  OR ISNULL(master_crc) <> ISNULL(this_crc))
 GROUP BY db, tbl;
 
-# Let's identify which chunk has the issue
+# Let's identify which chunk has the issue on the slave (lab7b-db2)
 select * from percona.checksums where this_crc!=master_crc;
 
 # Check the lower and the upper boundary
 
 # The tables with differences can be synced to the master with pt-table-sync
+# this needs to run on the master (lab7b-db1)
 pt-table-sync --dry-run --replicate percona.checksums h=localhost
 pt-table-sync --execute --replicate percona.checksums h=localhost
 
 # on the master re-run pt-table-checksum
 pt-table-checksum --no-check-binlog-format --chunk-time 0.1
 
-# Check for differences on the slaves
+# Check for differences on the slave
 SELECT db, tbl, SUM(this_cnt) AS total_rows, COUNT(*) AS chunks
 FROM percona.checksums
 WHERE (
