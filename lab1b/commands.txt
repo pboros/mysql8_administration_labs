@@ -5,14 +5,12 @@ vagrant up
 vagrant ssh lab1b
 
 # Download the deb containing the repositories
-curl -L -O https://dev.mysql.com/get/mysql-apt-config_0.8.9-1_all.deb
+curl -L -O https://dev.mysql.com/get/mysql-apt-config_0.8.10-1_all.deb
 
 # Install the deb containing the repositories
-sudo dpkg -i mysql-apt-config_0.8.9-1_all.deb
+sudo dpkg -i mysql-apt-config_0.8.10-1_all.deb
 
-# In debconf, select mysql 8 preview
-# Select MySQL Server & Cluster (Currently selected: mysql-5.7)
-# Select mysql-8.0 preview
+# In debconf, MySQL 8 will already be selected
 # Choose ok from the main menu
 
 # Get the package list from the fresly configured repo
@@ -23,12 +21,32 @@ sudo apt-get -y install mysql-community-server
 
 # Enter the root password in debconf twice
 
-# After installation we see a systemd error, but MySQL is actually running.
+# Use legacy authentication method (retain mysql 5.x compatibility)
+
+# After installation we see a systemd error, but MySQL is installed, let's
+# check the status
+sudo systemctl status mysql
+
+# Start mysql
+sudo systemctl start MySQL
+
+# Check the status again
 sudo systemctl status mysql
 
 # Log in with the root password provided to debconf
 mysql -u root -p
 (put in new password)
+
+# Likely, mysql was not able to set the password, in this case a passwordless
+# login will be successful
+mysql -u root
+
+# If this is the case, change the password
+alter user 'root'@'localhost' identified by 'Not_so_secure1!';
+
+# Now try to log in with password again
+mysql -u root -p
+(put in the new password)
 
 # Try show databases
 show databases;

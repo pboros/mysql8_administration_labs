@@ -9,16 +9,15 @@ vagrant ssh lab1c
 sudo yum remove -y mariadb-libs
 
 # Download tarball of MySQL Community Server 8.0
-curl -L -O https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.3-rc-linux-glibc2.12-x86_64.tar.gz
-
+curl -L -O https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-8.0.11-linux-glibc2.12-x86_64.tar.gz
 # Unpack the tarball to /usr/local
-sudo tar xvfz mysql-8.0.3-rc-linux-glibc2.12-x86_64.tar.gz -C /usr/local/
+sudo tar xvfz mysql-8.0.11-linux-glibc2.12-x86_64.tar.gz -C /usr/local/
 
 # Install libaio (this is a dependency pf the packages)
 sudo yum -y install libaio
 
 # Add mysql group (this is done by the packages)
-sudo groupadd mysqls
+sudo groupadd mysql
 
 # Add mysql user (this is done by the packages)
 sudo useradd -r -g mysql -s /bin/false mysql
@@ -30,7 +29,7 @@ getent passwd | grep mysql
 cd /usr/local
 
 # Create a symlink to the mysql version being installed
-sudo ln -s mysql-8.0.3-rc-linux-glibc2.12-x86_64 mysql
+sudo ln -s mysql-8.0.11-linux-glibc2.12-x86_64 mysql
 
 # Check the symlink
 ls -la mysql
