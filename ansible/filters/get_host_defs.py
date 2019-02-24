@@ -19,6 +19,6 @@ def get_host_defs(checked_param):
     with open("host_definition.txt") as f:
         host_def_lines = f.readlines()
     for host_def_line in host_def_lines:
-        machine_name, ip, box = host_def_line.split()
+        machine_name, ip, box, box_version = host_def_line.split()
         result[machine_name] = [ip, box]
     return result
