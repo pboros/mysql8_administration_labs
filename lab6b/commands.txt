@@ -22,20 +22,23 @@ nc -l 9999 | sudo xbstream -xv -C /var/lib/mysql/
 # Start xtrabackup on lab6b-db1
 sudo innobackupex --stream=xbstream /tmp | nc lab6b-db2 9999
 
-# Apply logs
+# Apply logs on lab6b-db2
 sudo innobackupex --apply-log /var/lib/mysql/
 
 # On lab6b-db2 change the owner or the datadir to mysql
 sudo chown -R mysql:mysql /var/lib/mysql
 
-# Start mysqld
+# Start mysqld on lab6b-db2
 sudo systemctl start mysqld
 
-# Check the xtrabackup_binlog_info file in the data directory
+# Check the xtrabackup_binlog_info file in the data directory on lab6b-db2
 sudo cat /var/lib/mysql/xtrabackup_binlog_info
 (note the filename and the position and the gtid)
 
-# Optional: configure replication
+# Start mysql client on lab6b-db2
+mysql
+
+# Optional: configure replication on lab6b-db2 using mysql client
 set global gtid_purged='e49ddb66-2c7f-11e8-b49f-080027d35974:1-19';
 change master to
 master_host='lab6b-db1',

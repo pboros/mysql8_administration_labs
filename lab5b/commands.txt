@@ -37,7 +37,7 @@ sudo docker run -d \
 
 # Log in into each database server (lab5b-db1, lab5b-db2, lab5b-db3)
 # and install PMM client
-sudo yum -y install pmm-client
+sudo yum -y install pmm-client --nogpgcheck
 
 # Configure the location of the PMM server
 sudo pmm-admin config --server lab5b-mon

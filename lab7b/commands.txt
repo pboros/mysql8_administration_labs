@@ -13,7 +13,7 @@ vagrant ssh lab7b-db2
 # Log in to the sysbench box
 vagrant ssh lab7b-sysbench
 
-# Start monitoring replication lag on lab7a-db2 and leave that running
+# Start monitoring replication lag on lab7b-db2 and leave that running
 while true ; do mysql -e "show slave status\G" | grep Seconds_Behind_Master ; sleep 1 ; done
 
 # On the sysbench node (lab7b-sysbench) run the prepare command

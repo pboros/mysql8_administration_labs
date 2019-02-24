@@ -93,7 +93,7 @@ sudo pt-query-digest \
 sudo systemctl stop mysqld
 
 # Upgrade the packages
-sudo yum -y install --disablerepo=mysql57-community --enablerepo=mysql80-community mysql-community-server
+sudo yum -y install --disablerepo=mysql57-community --enablerepo=mysql80-community mysql-community-server-8.0.11
 
 # Start the mysql server on lab8b-db5
 sudo systemctl start mysqld
