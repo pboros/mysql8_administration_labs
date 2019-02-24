@@ -2,12 +2,13 @@ def_file = "host_definition.txt"
 fh = open(def_file)
 definitions = {}
 fh.each do |def_line|
-    machine_name, ip, box = def_line.split()
-    definitions[machine_name] = [ip, box]
+    machine_name, ip, box, box_version = def_line.split()
+    definitions[machine_name] = [ip, box, box_version]
 end
 machines = definitions.keys()
 ips = definitions.values().map{|x| x[0]}
 box = definitions.values().map{|x| x[1]}
+box_version = definitions.values().map{|x| x[2]}
 num_machines = machines.length
 
 Vagrant.configure("2") do |config|
@@ -18,6 +19,7 @@ Vagrant.configure("2") do |config|
             machine.vm.box = box[machine_id-1]
             machine.vm.network "private_network", ip: ips[machine_id-1]
             machine.vm.hostname = machines[machine_id-1]
+            machine.vm.box_version = box_version[machine_id-1]
             machine.vm.provider "virtualbox" do |vb|
                 vb.memory = 1024
             end
