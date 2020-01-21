@@ -17,7 +17,7 @@ sudo dpkg -i mysql-apt-config_0.8.10-1_all.deb
 sudo apt-get update
 
 # Install MySQL community server. With the setup above, this will nistall 8.0.
-sudo apt-get -y install mysql-community-server
+sudo apt-get -y install mysql-community-server --allow-unauthenticated
 
 # Enter the root password in debconf twice
 
