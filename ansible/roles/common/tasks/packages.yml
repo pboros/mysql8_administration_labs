@@ -14,7 +14,7 @@
 
 - name: Install mysql community server 8.0
   yum:
-    name: "mysql-community-server-8.0.11-1.el7.x86_64"
+    name: "mysql-community-server"
     state: present
     enablerepo: mysql80-community
     disablerepo: mysql57-community
@@ -23,7 +23,7 @@
 
 - name: Install mysql community server 5.7
   yum:
-    name: "mysql-community-server-5.7.22-1.el7.x86_64"
+    name: "mysql-community-server"
     state: present
     enablerepo: mysql57-community
     disablerepo: mysql57-community
