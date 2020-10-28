@@ -21,7 +21,7 @@ sudo yum –y install --disablerepo=mysql57-community --enablerepo=mysql80-commu
 sudo systemctl start mysqld
 
 # Look for the temporary root password
-grep password /var/log/mysqld.log
+sudo grep password /var/log/mysqld.log
 
 # Log in the the temporary root password
 mysql -u root -p
