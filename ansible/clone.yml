@@ -27,7 +27,7 @@
     - vars/mysql_config.yml
   tasks:
     - name: Stream backup to target
-      shell: "mysqldump --all-databases --triggers --routines --events --master-data=1 --single-transaction | socat -u - tcp:{{ target }}:4444"
+      shell: "mysqldump --all-databases --triggers --routines --events --source-data=1 --single-transaction | socat -u - tcp:{{ target }}:4444"
 
 - hosts: "{{ target }}"
   become: true

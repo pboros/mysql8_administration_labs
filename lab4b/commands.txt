@@ -21,7 +21,7 @@ show grants for 'repl'@'%';
 exit
 
 # Create a mysqldump from the database
-mysqldump --all-databases --master-data=2 --single-transaction > dump.sql
+mysqldump --all-databases --source-data=2 --single-transaction > dump.sql
 
 # Verify that the CHANGE MASTER command is visible in the dump
 head -30 dump.sql
